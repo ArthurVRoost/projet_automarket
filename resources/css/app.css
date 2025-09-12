@@ -4,4 +4,16 @@
     height: 40vh;
     background-color: #3468df;
     color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+}
+.inputHome{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    padding: 15px;
+    border: none;
 }
