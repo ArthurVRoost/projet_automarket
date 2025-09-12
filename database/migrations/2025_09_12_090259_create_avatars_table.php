@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('avatars', function (Blueprint $table) {
             $table->id();
+            $table->string('path');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
