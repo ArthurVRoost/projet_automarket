@@ -1,1 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+.divHome{
+    height: 40vh;
+    background-color: #3468df;
+    color: white;
+}
