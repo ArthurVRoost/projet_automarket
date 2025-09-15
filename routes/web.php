@@ -16,7 +16,15 @@ Route::get('/', function () {
         ]
     ]);
 });
-
+Route::get('/cars/{id}', function ($id) {
+    $car = Car::with(['brand','fuel','user'])->findOrFail($id);
+    return Inertia::render("Show", [
+        'car' => $car,
+        'auth' => [
+            'user' => Auth::user()
+        ]
+    ]);
+})->name('cars.show');
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

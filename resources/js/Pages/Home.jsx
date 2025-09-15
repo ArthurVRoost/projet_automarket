@@ -1,5 +1,6 @@
 import Footer from '@/Components/Footer'
 import Nav from '@/Components/Nav'
+import { Link } from '@inertiajs/react'
 import React from 'react'
 
 export default function Home({auth, user, cars}) {
@@ -33,7 +34,7 @@ export default function Home({auth, user, cars}) {
                 <div>⛽ {car.fuel?.fuel}</div>
                 <div>📍 Schaerbeek 1030</div>
               </div>
-              <button className="car-btn">Voir détails</button>
+              <Link href={route('cars.show', car.id)}  ><button className="car-btn">Voir détails</button></Link>
             </div>
           </div>
         ))}

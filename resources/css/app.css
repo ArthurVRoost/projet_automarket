@@ -1,5 +1,5 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
-
+@import './show.css';
 .divHome{
     height: 50vh;
     background-color: #3468df;
@@ -85,13 +85,15 @@
 
 .car-btn {
   width: 100%;
-  background: linear-gradient(to right, #2563eb, #3b82f6);
+  background: #3468df;
   color: #fff;
   padding: 10px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
+  list-style: none;
+  text-decoration: none;
 }
 
 .car-btn:hover {
