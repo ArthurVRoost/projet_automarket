@@ -1,0 +1,68 @@
+.create-car-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.create-car-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.create-car-form input,
+.create-car-form select,
+.create-car-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  width: 100%;
+  background: white;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.create-car-form input:focus,
+.create-car-form select:focus,
+.create-car-form textarea:focus {
+  border-color: #3468df;
+  outline: none;
+}
+
+.create-car-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.create-car-form input[type="file"] {
+  padding: 5px;
+}
+
+.create-car-form input[type="color"] {
+  padding: 2px;
+  width: 60px;
+  height: 40px;
+  border: none;
+  background: none;
+}
+
+.submit-btn {
+  padding: 12px;
+  background: #3468df;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background: #274db5;
+}

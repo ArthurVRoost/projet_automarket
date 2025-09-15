@@ -1,11 +1,19 @@
 import Footer from '@/Components/Footer'
 import Nav from '@/Components/Nav'
-import { Link } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/react'
 import React, { useState } from 'react'
 
 export default function Home({ auth, user, cars, brands, fuels }) {
   const [selectedBrand, setSelectedBrand] = useState('Tous')
   const [selectedFuel, setSelectedFuel] = useState('Tous')
+  const handleDelete = (id) => {
+    if (confirm("Voulez-vous vraiment supprimer cette annonce ?")) {
+      router.delete(route('cars.destroy', id), {
+        onSuccess: () => alert("Annonce supprimée avec succès"),
+        onError: () => alert("Erreur lors de la suppression")
+      })
+    }
+  }
 
   // Filtrage des voitures
   const filteredCars = cars.filter(car => {
@@ -64,35 +72,44 @@ export default function Home({ auth, user, cars, brands, fuels }) {
         </div>
 
         {/* Cartes de voitures */}
-        <div className="cars-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-          {filteredCars.map((car) => (
-            <div key={car.id} className="car-card">
-              <div className="car-badge">{car.brand?.name}</div>
-              <img 
-                src={`/${car.image1_path}`} 
-                alt={car.model} 
-                className="car-image"
-              />
-              <div className="car-content">
-                <h3 className="car-title">
-                  {car.brand?.name} {car.model}
-                </h3>
-                <p className="car-price">
-                  {car.prix.toLocaleString()} €
-                </p>
-                <div className="car-info">
-                  <div>📅 {car.annee}</div>
-                  <div>⏱ {car.kilometrage.toLocaleString()} km</div>
-                  <div>⛽ {car.fuel?.fuel}</div>
-                  <div>📍 Schaerbeek 1030</div>
-                </div>
-                <Link href={route('cars.show', car.id)}>
-                  <button className="car-btn">Voir détails</button>
-                </Link>
+       <div className="cars-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+        {filteredCars.map((car) => (
+          <div key={car.id} className="car-card">
+            <div className="car-badge">{car.brand?.name}</div>
+            <img 
+              src={`/${car.image1_path}`} 
+              alt={car.model} 
+              className="car-image"
+            />
+            <div className="car-content">
+              <h3 className="car-title">
+                {car.brand?.name} {car.model}
+              </h3>
+              <p className="car-price">
+                {car.prix.toLocaleString()} €
+              </p>
+              <div className="car-info">
+                <div>📅 {car.annee}</div>
+                <div>⏱ {car.kilometrage.toLocaleString()} km</div>
+                <div>⛽ {car.fuel?.fuel}</div>
+                <div>📍 Schaerbeek 1030</div>
               </div>
+              <Link href={route('cars.show', car.id)}>
+                <button className="car-btn">Voir détails</button>
+              </Link>
+
+              {(auth.user?.role_id === 2 || auth.user?.role_id === 3) && (
+                <button 
+                  onClick={() => handleDelete(car.id)} 
+                  style={{ marginTop: '10px', backgroundColor: 'red', color: 'white', padding: '10px 15px', border:'none', borderRadius:'15px' }}
+                >
+                  Supprimer l'annonce
+                </button>
+              )}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
       </div>
 
       <Footer/>

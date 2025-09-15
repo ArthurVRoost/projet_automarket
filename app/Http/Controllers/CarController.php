@@ -58,10 +58,13 @@ class CarController extends Controller
     return Inertia::location(route('homepage'));
 }
 
-    // Supprimer une voiture
+    
     public function destroy(Car $car)
-    {
-        $car->delete();
-        return redirect()->route('cars.create')->with('success', 'Voiture supprimée !');
+{
+    if (!in_array(Auth::user()->role_id, [2, 3])) {
+        abort(403, 'Accès refusé');
     }
+    $car->delete();
+    return redirect()->route('homepage')->with('success', 'Voiture supprimée !');
+}
 }

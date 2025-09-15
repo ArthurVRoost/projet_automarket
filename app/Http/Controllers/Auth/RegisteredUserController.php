@@ -36,17 +36,25 @@ class RegisteredUserController extends Controller
             'phone' => 'required',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role_id'    => 'required|exists:roles,id',
+            'role_id' => 'nullable|exists:roles,id'
         ]);
 
-        $user = User::create([
+        // Préparer les données pour la création
+        $userData = [
             'name' => $request->name,
             'first_name' => $request->first_name,
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id'    => $request->role_id,
-        ]);
+        ];
+
+        // Ajouter role_id seulement s'il est fourni
+        if ($request->filled('role_id')) {
+            $userData['role_id'] = $request->role_id;
+        }
+        // Sinon, laisser la base de données utiliser la valeur par défaut (1)
+
+        $user = User::create($userData);
 
         event(new Registered($user));
 
