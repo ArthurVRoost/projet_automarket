@@ -1,5 +1,43 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import './show.css';
+
+.navDiv{
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 20px;
+    align-items: center;
+    background-color: #B2C3F1;
+    width: 100%;
+}
+.btnLogin{
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 12px;
+}
+.btnLogin:hover{
+    box-shadow: 0px 0px 10px 0px white;
+}
+.btnRegister{
+    border: none;
+    background-color: #0C51D9;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 12px;
+    color: white;
+}
+.btnRegister:hover{
+    box-shadow: 0px 0px 10px 0px white;
+}
+.LinkNav{
+    color: black;
+    text-decoration: none;
+}
+.LinkNav:hover{
+    color: white;
+}
 .divHome{
     height: 50vh;
     background-color: #3468df;
