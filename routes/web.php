@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Fuel;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +13,8 @@ Route::get('/', function () {
     return Inertia::render("Home", [
         'user' => User::all(),
         'cars' => Car::with(['brand', 'fuel'])->get(),
+        'brands' => Brand::all(),   
+        'fuels' => Fuel::all(),     
         'auth' => [
             'user' => Auth::user()
         ]
