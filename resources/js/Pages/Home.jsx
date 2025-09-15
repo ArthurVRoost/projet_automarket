@@ -11,7 +11,6 @@ export default function Home({auth, user}) {
         <p>Des millieurs d'annonces vérifiées à votre disposition</p>
         <input type="text" placeholder='Rechercher par marque, modèle...' className='inputHome' name="" id="" />
       </div>
-      
       <Footer/>
     </div>
   )

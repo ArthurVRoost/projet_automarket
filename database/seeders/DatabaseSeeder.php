@@ -22,5 +22,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'role_id' => 3,
         ]);
+        $this->call([
+            AvatarSeeder::class,
+            BrandSeeder::class,
+            FuelSeeder::class,
+            CarSeeder::class,
+        ]);
     }
 }
