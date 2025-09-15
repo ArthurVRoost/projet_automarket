@@ -52,7 +52,7 @@ export default function Show({ car, auth, user }) {
         <div className="show-container">
             {/* Header avec bouton retour */}
             <div className="header">
-                <Link href={'/'}><button style={{textDecoration:'none'}} className="back-button">← Retour au catalogue</button></Link>
+                <Link href={'/'} style={{textDecoration:'none'}}><button className="back-button"  >← Retour au catalogue</button></Link>
             </div>
 
             <div className="content-wrapper">
