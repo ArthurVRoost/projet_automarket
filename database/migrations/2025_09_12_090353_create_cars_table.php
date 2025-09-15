@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('couleur', 7);
             $table->enum('type', ['4X4','SUV','BREAK','LUDOSPACE','VAN','BERLINE']);
             //  SI VOITURE ELEC CYLINDREE = NONE, OUBLIE PAS 
-            $table->enum('cylindree', ['1l','1.2l','1.5l','1.8l','2l','3l','NONE']);
+            $table->enum('cylindree', ['1l','1.2l','1.5l','1.8l','2l','3l','NONE'])->nullable();
             $table->decimal('prix', 12, 2);
             $table->text('description');
             $table->timestamps();

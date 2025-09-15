@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Brand;
 use App\Models\Car;
@@ -18,8 +20,16 @@ Route::get('/', function () {
         'auth' => [
             'user' => Auth::user()
         ]
+        
     ]);
+})->name('homepage');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
+    Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
+    Route::delete('/cars/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
 });
+
 Route::get('/cars/{id}', function ($id) {
     $car = Car::with(['brand','fuel','user'])->findOrFail($id);
     return Inertia::render("Show", [
@@ -38,5 +48,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/test', [HomeController::class, 'index']);
+
+
+   
+
 
 require __DIR__.'/auth.php';

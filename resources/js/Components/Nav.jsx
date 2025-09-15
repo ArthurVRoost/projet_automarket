@@ -12,7 +12,7 @@ export default function Nav ({auth, user}) {
             <LuCar /> AutoMarket
           </h3>
           <Link className='LinkNav' href={'/'} >Catalogue</Link>
-          <Link className='LinkNav' href={'/'}><GoPlus /> Vendez votre voiture</Link>
+          <Link className='LinkNav' href={route('cars.create')}><GoPlus /> Vendez votre voiture</Link>
           <Link className='LinkNav' href={'/admin'} ><GoGear/> Administration</Link>
           <button className='btnRegister' onClick={() => router.post(route('logout'))}>Déconnexion</button>
         </div>
@@ -20,7 +20,7 @@ export default function Nav ({auth, user}) {
         <div className='navDiv'>
           <h3 style={{color: '#3468df'}}><LuCar /> AutoMarket</h3>
           <Link className='LinkNav' href={'/'} >Catalogue</Link>
-          <Link className='LinkNav' href={'/'}><GoPlus /> Vendez votre voiture</Link>
+          <Link className='LinkNav' href={route('cars.create')}><GoPlus /> Vendez votre voiture</Link>
           <Link className='LinkNav' href={'/admin'} ><GoGear/> Administration</Link>
           <div style={{display:'flex', gap: '15px'}}> 
             <Link href={route('login')}> <button className='btnLogin'>Connexion</button> </Link>
