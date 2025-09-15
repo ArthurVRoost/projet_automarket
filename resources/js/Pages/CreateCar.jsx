@@ -1,4 +1,6 @@
-import { router } from '@inertiajs/react';
+import Footer from '@/Components/Footer';
+
+import { Link, router } from '@inertiajs/react';
 import React, { useState, useEffect } from 'react';
 
 
@@ -62,6 +64,11 @@ export default function CreateCar({ brands, fuels }) {
   };
 
   return (
+    <>
+    <div style={{display:'flex', justifyContent:'center', marginTop:'3%'}}>
+        <Link href={'/'}><button className='btnRetourCreateCar' style={{border:'1px solid black', backgroundColor:'white', borderRadius:'15px', padding:'10px 15px'}}>Retour Page d'accueil</button></Link>
+    </div>
+    
     <form 
       onSubmit={handleSubmit} 
       method="POST" 
@@ -156,6 +163,8 @@ export default function CreateCar({ brands, fuels }) {
       <button type="submit" className="submit-btn">
         Publier
       </button>
-    </form> 
+    </form>
+    <Footer/> 
+    </>
   );
 }

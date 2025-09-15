@@ -7,10 +7,10 @@ export default function Home({ auth, user, cars, brands, fuels }) {
   const [selectedBrand, setSelectedBrand] = useState('Tous')
   const [selectedFuel, setSelectedFuel] = useState('Tous')
   const handleDelete = (id) => {
-    if (confirm("Voulez-vous vraiment supprimer cette annonce ?")) {
+    if (confirm("Tu veux vraiment supprimer?")) {
       router.delete(route('cars.destroy', id), {
-        onSuccess: () => alert("Annonce supprimée avec succès"),
-        onError: () => alert("Erreur lors de la suppression")
+        onSuccess: () => alert("Annonce del avec succes"),
+        onError: () => alert("Erreur")
       })
     }
   }

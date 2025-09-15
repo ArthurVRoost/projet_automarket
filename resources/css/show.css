@@ -470,3 +470,72 @@
         gap: 12px;
     }
 }
+
+.create-brand-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.brand-form .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.brand-form input[type="text"],
+.brand-form input[type="file"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.brand-form input[type="file"] {
+    padding: 3px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: #ff0000;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.access-denied {
+    text-align: center;
+    margin: 50px auto;
+    font-size: 1.2rem;
+    color: #ff0000;
+}

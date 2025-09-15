@@ -60,9 +60,12 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
 .submit-btn:hover {
   background: #274db5;
+}
+
+.btnRetourCreateCar:hover{
+    transform: scale(1.1);
 }

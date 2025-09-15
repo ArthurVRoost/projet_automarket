@@ -13,6 +13,7 @@ export default function Nav ({auth, user}) {
           </h3>
           <Link className='LinkNav' href={'/'} >Catalogue</Link>
           <Link className='LinkNav' href={route('cars.create')}><GoPlus /> Vendez votre voiture</Link>
+          <Link className='LinkNav' href={route('brands.create')}><GoPlus /> Rajoutez une marque</Link>
           <Link className='LinkNav' href={'/admin'} ><GoGear/> Administration</Link>
           <button className='btnRegister' onClick={() => router.post(route('logout'))}>Déconnexion</button>
         </div>
@@ -21,6 +22,7 @@ export default function Nav ({auth, user}) {
           <h3 style={{color: '#3468df'}}><LuCar /> AutoMarket</h3>
           <Link className='LinkNav' href={'/'} >Catalogue</Link>
           <Link className='LinkNav' href={route('cars.create')}><GoPlus /> Vendez votre voiture</Link>
+          <Link className='LinkNav' href={route('brands.create')}><GoPlus /> Rajoutez une marque</Link>
           {auth.user && auth.user.role_id === 3 && (
                 <Link className='LinkNav' href={route('admin.index')}>
                     <GoGear/> Administration

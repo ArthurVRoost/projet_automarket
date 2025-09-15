@@ -1,9 +1,11 @@
+import Footer from '@/Components/Footer';
+import Nav from '@/Components/Nav';
 import { Head, useForm, router } from '@inertiajs/react';
 import { useState } from 'react';
 
 
 
-export default function AdminIndex({ users, roles, auth }) {
+export default function AdminIndex({ users, roles, auth, user }) {
     const [editingUser, setEditingUser] = useState(null);
     
     const { data, setData, patch, processing, errors, reset } = useForm({
@@ -51,7 +53,7 @@ export default function AdminIndex({ users, roles, auth }) {
     return (
         <>
             <Head title="Administration" />
-            
+            <Nav auth={auth} user={user}/>
             <div className="admin-container">
                 <div className="admin-wrapper">
                     {/* Header */}
@@ -213,6 +215,7 @@ export default function AdminIndex({ users, roles, auth }) {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 }

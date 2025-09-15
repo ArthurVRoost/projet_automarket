@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -30,7 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
     Route::delete('/cars/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
 });
-
+Route::middleware(['auth', 'admin_or_modo'])->group(function () {
+    Route::get('/brands/create', [BrandController::class, 'create'])->name('brands.create');
+    Route::post('/brands', [BrandController::class, 'store'])->name('brands.store');
+});
 Route::get('/cars/{id}', function ($id) {
     $car = Car::with(['brand','fuel','user'])->findOrFail($id);
     return Inertia::render("Show", [
