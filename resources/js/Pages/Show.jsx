@@ -192,9 +192,11 @@ export default function Show({ car, auth, user }) {
                         <h3>Vendeur</h3>
                         <div className="seller-name">{car.user.name}</div>
                         <div className="seller-location">📍 Paris 16ème</div>
+                        <Link href={route('mail')}>
                         <button className="contact-btn">
                             ✉ Contacter le vendeur
                         </button>
+                        </Link>
                         <div className="contact-note">
                             Connectez-vous pour contacter le vendeur
                         </div>

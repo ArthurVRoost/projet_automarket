@@ -103,7 +103,7 @@ export default function Home({ auth, user, cars, brands, fuels }) {
                   onClick={() => handleDelete(car.id)} 
                   style={{ marginTop: '10px', backgroundColor: 'red', color: 'white', padding: '10px 15px', border:'none', borderRadius:'15px' }}
                 >
-                  Supprimer l'annonce
+                  Supprimer l'annonce 
                 </button>
               )}
             </div>

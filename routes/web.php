@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Mail\DemoMail;
 use App\Models\Brand;
 use App\Models\Car;
 use App\Models\Fuel;
@@ -26,6 +27,10 @@ Route::get('/', function () {
     ]);
 })->name('homepage');
 
+Route::get('/mail-test', function () {
+    Mail::to('avroost@gmail.com')->send(new DemoMail());
+    return 'Mail envoyé.';
+})->name('mail');
 Route::middleware('auth')->group(function () {
     Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
     Route::post('/cars', [CarController::class, 'store'])->name('cars.store');
