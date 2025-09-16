@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/mail-test', function () {
     Mail::to('avroost@gmail.com')->send(new DemoMail());
-    return 'Mail envoyé.';
+    return 'Spécial retour pour Gary.';
 })->name('mail');
 Route::middleware('auth')->group(function () {
     Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');

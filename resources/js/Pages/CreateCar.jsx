@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 
 
 export default function CreateCar({ brands, fuels }) {
+  // USESTATE DE L'ETAT DE BASE DU FORM EN ARRIVANT DESSUS PAS DE OLD VU QU'ON CREE UNE PUBLI
   const [form, setForm] = useState({
     brand_id: '',
     fuel_id: '',
@@ -26,14 +27,17 @@ export default function CreateCar({ brands, fuels }) {
     description: '',
   });
 
+  // BOOLEAN POUR AFFICHER OU NON LE CHAMP CYLINDRE DE BASE OUI
   const [showCylindree, setShowCylindree] = useState(true);
 
+  // ON UTILISE UN USE EFFECT PARCE QUE DEUX CHAMPS INTERAGISSENT, DONC LE USE EFFECT VA CHANGER AU MOMENT DE L'INTERACTION
   useEffect(() => {
     const selectedFuel = fuels.find(f => f.id == form.fuel_id)?.fuel;
     setShowCylindree(selectedFuel !== 'Electrique');
     if (selectedFuel === 'Electrique') setForm(prev => ({ ...prev, cylindree: 'NONE' }));
   }, [form.fuel_id]);
 
+  // ON DECONSTRUIT LE E TARGET POUR AVOIR UNE FONCTION QUI GERE TOUT LES CHANGEMETS, DE TYPE CHECKBOX FILE ETC ET MEME PRINCIPE QUE BRAND POUR LE FILE[0]
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === 'checkbox') setForm({ ...form, [name]: checked });
@@ -41,6 +45,10 @@ export default function CreateCar({ brands, fuels }) {
     else setForm({ ...form, [name]: value });
   };
 
+
+  // HANDLESUBMIT PAS MOI DU TOUT PARCE QUE BCP DE PROBLEMES, IA PARCE QUE J'EN AVAIS MARRE, J'AI DEMANDE DE M'EXPLIQUE CE QU'IL A FAIT 
+  // FORMDATA: ON CREE UN OBJET POUR ENVOYER FICHIERS + DONNEE EN MUTILPART/FORMDATA (IMAGE)
+  // OBJECT.KEYS: ON PARCOURT CHAQUE CLE DU FORM ET ON DECIDE COMMENT LAJOUTER A FORMDATA
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -51,12 +59,15 @@ export default function CreateCar({ brands, fuels }) {
         formData.append(key, value ? 1 : 0);
       } else if (value instanceof File) {
         formData.append(key, value);
+
       } else if (value !== null && value !== '') {
         formData.append(key, value);
+        // ON ENVOIE PAS LES VALEURS NULLES OU VIDES
       }
     });
 
     router.post(route('cars.store'), formData, {
+      // SERT A FORCER INERTIA QUE CE SERA ENVOYER COMME FORMDATA MULTIPART
       forceFormData: true,
       onSuccess: () => router.visit(route('homepage')),
       onError: (errors) => console.log('Erreurs :', errors),
