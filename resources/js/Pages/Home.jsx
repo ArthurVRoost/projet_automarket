@@ -89,10 +89,10 @@ export default function Home({ auth, user, cars, brands, fuels }) {
                 {car.prix.toLocaleString()} €
               </p>
               <div className="car-info">
-                <div>📅 {car.annee}</div>
-                <div>⏱ {car.kilometrage.toLocaleString()} km</div>
-                <div>⛽ {car.fuel?.fuel}</div>
-                <div>📍 Schaerbeek 1030</div>
+                <div>Année: {car.annee}</div>
+                <div>Km: {car.kilometrage.toLocaleString()} km</div>
+                <div>Fuel: {car.fuel?.fuel}</div>
+                <div>Lieu: Schaerbeek 1030</div>
               </div>
               <Link href={route('cars.show', car.id)}>
                 <button className="car-btn">Voir détails</button>
