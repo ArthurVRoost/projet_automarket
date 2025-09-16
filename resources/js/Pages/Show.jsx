@@ -191,10 +191,10 @@ export default function Show({ car, auth, user }) {
                     <div className="seller-section">
                         <h3>Vendeur</h3>
                         <div className="seller-name">{car.user.name}</div>
-                        <div className="seller-location">📍 Paris 16ème</div>
+                        <div className="seller-location">📍 Schaerbeek 1030</div>
                         <Link href={route('mail')}>
                         <button className="contact-btn">
-                            ✉ Contacter le vendeur
+                            Contacter le vendeur
                         </button>
                         </Link>
                         <div className="contact-note">
@@ -204,7 +204,7 @@ export default function Show({ car, auth, user }) {
 
                     {/* Simulation de financement */}
                     <div className="financing-section">
-                        <h3>💳 Simulation de financement</h3>
+                        <h3>Simulation de financement</h3>
                         
                         <div className="financing-details">
                             <div className="financing-row">
