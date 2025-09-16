@@ -18,6 +18,7 @@ class AdminOrModo
     {
         $user = Auth::user();
 
+        // IN ARRAY VERIFIE SI C'EST BIEN DANS LE TABLEAU DONC 2 OU 3
         if (!in_array($user->role_id, [2, 3])) {
             abort(403, "Accès refusé");
         }
