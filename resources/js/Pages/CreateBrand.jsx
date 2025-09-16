@@ -4,21 +4,23 @@ import { Head, useForm } from '@inertiajs/react';
 
 
 export default function CreateBrand({ auth, user }) {
-    // Vérification si auth.user existe
+    // CHECK AUTH ET AUTH.USER
     if (!auth || !auth.user) {
-        return <div className="access-denied">Accès refusé ou non connecté</div>;
+        return <div className="access-denied"> <p>Accès refusé ou non connecté</p></div>;
     }
 
-    // Vérification du rôle
+    // UNIQUEMENT MODO OU ADMIN
     if (![2, 3].includes(auth.user.role_id)) {
-        return <div className="access-denied">Accès refusé</div>;
+        return <div className="access-denied"><p>Accès refusé</p></div>;
     }
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    // USEFORM 
+    const { data, setData, post, processing, reset } = useForm({
         name: '',
         logo: null
     });
 
+    // CREATION FORMDATA POUR LE FORM AJOUTE NOM ET LE LOGO S'IL EST MIS AUSSI, PUIS METHODE POST ET RESET A LA FIN 
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -38,28 +40,16 @@ export default function CreateBrand({ auth, user }) {
             <div className="create-brand-container" style={{marginBottom:'150px', marginTop:'50px'}}>
                 <h1 className="title">Créer une nouvelle marque</h1>
 
-                {errors.name && <div className="error">{errors.name}</div>}
-                {errors.logo && <div className="error">{errors.logo}</div>}
-
                 <form onSubmit={handleSubmit} encType="multipart/form-data" className="brand-form">
                     <div className="form-group">
                         <label>Nom de la marque</label>
-                        <input
-                            type="text"
-                            value={data.name}
-                            onChange={(e) => setData('name', e.target.value)}
-                            placeholder="Ex: Audi"
-                        />
+                        <input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} placeholder="Ex: Audi"/>
                     </div>
-
                     <div className="form-group">
                         <label>Logo (optionnel)</label>
-                        <input
-                            type="file"
-                            onChange={(e) => setData('logo', e.target.files[0])}
-                        />
+                        {/* LE [0] SERT PARCE QUE LE FILE RENVOIE UN OBJET ET IL PREND LE 0 QUI EST LE 'NAME' */}
+                        <input type="file" onChange={(e) => setData('logo', e.target.files[0])}/>
                     </div>
-
                     <button type="submit" disabled={processing} className="btn-submit">
                         Créer
                     </button>
