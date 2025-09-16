@@ -6,7 +6,20 @@ import React, { useState } from 'react';
 
 export default function Show({ car, auth, user }) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [monthlyPayment, setMonthlyPayment] = useState(647);
+
+    // Paramètres du crédit
+    const loanTerm = 60; // 60 mois
+    const annualRate = 0.03; // 3%
+    const monthlyRate = annualRate / 12;
+    const initialDeposit = 9000;
+
+    // Capital emprunté
+    const loanAmount = car.prix - initialDeposit;
+
+    // Formule de mensualité
+    const monthlyPayment = loanAmount > 0 
+        ? (loanAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -loanTerm))
+        : 0;
 
     const images = [
         car.image1_path,
@@ -203,8 +216,8 @@ export default function Show({ car, auth, user }) {
                         </div>
 
                         <div className="monthly-payment">
-                            <div className="payment-label">€ Mensualité</div>
-                            <div className="payment-amount">{monthlyPayment} €</div>
+                            <div className="payment-label">Mensualité</div>
+                            <div className="payment-amount">{formatPrice(monthlyPayment.toFixed(2))} €</div>
                         </div>
 
                         <div className="financing-note">

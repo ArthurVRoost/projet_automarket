@@ -2,10 +2,12 @@
 @import './show.css';
 @import './create.css';
 @import './admin.css';
+
 body{
     margin: 0;
     padding: 0;
 }
+
 /* NAV */
 .navDiv{
     display: flex;
@@ -16,6 +18,7 @@ body{
     background-color: #B2C3F1;
     width: 100%;
 }
+
 .btnLogin{
     border: none;
     background-color: white;
@@ -23,9 +26,11 @@ body{
     padding: 10px 20px;
     font-size: 12px;
 }
+
 .btnLogin:hover{
     box-shadow: 0px 0px 10px 0px white;
 }
+
 .btnRegister{
     border: none;
     background-color: #0C51D9;
@@ -34,21 +39,68 @@ body{
     font-size: 12px;
     color: white;
 }
+
 .btnRegister:hover{
     box-shadow: 0px 0px 10px 0px white;
 }
+
 .LinkNav{
     color: black;
     text-decoration: none;
 }
+
 .LinkNav:hover{
     color: white;
+}
+
+/* NAV RESPONSIVE */
+@media (max-width: 1024px) {
+    .navDiv {
+        gap: 30px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navDiv {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .LinkNav {
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    .btnLogin, .btnRegister {
+        padding: 8px 16px;
+        font-size: 11px;
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navDiv {
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .LinkNav {
+        font-size: 12px;
+    }
+    
+    .btnLogin, .btnRegister {
+        padding: 6px 12px;
+        font-size: 10px;
+    }
 }
 
 /* FOOTER */
 .divFooter{
     background-color: #3468df;
 }
+
 .div1Footer{
     display: flex;
     justify-content: center;
@@ -77,6 +129,34 @@ body{
     color: white;
 }
 
+/* FOOTER RESPONSIVE */
+@media (max-width: 768px) {
+    .div1Footer {
+        flex-direction: column;
+        gap: 20px;
+        font-size: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .copyright {
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .div1Footer {
+        gap: 15px;
+        font-size: 18px;
+        padding: 15px;
+    }
+    
+    .copyright {
+        font-size: 12px;
+    }
+}
+
 /* HOME */
 .divHome{
     height: 50vh;
@@ -87,6 +167,7 @@ body{
     text-align: center;
     align-content: center;
 }
+
 .inputHome{
     width: 500px;
     margin-left: auto;
@@ -95,6 +176,33 @@ body{
     padding: 15px;
     border: none;
 }
+
+/* HOME RESPONSIVE */
+@media (max-width: 768px) {
+    .divHome {
+        height: 40vh;
+        padding: 20px;
+    }
+    
+    .inputHome {
+        width: 90%;
+        max-width: 400px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .divHome {
+        height: 35vh;
+        padding: 15px;
+    }
+    
+    .inputHome {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
 .cars-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -178,6 +286,52 @@ body{
   background: linear-gradient(to right, #1d4ed8, #2563eb);
 }
 
+/* CARS RESPONSIVE */
+@media (max-width: 768px) {
+    .cars-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        margin-left: 15%;
+    }
+    
+    .car-image {
+        height: 180px;
+    }
+    
+    .car-title {
+        font-size: 16px;
+    }
+    
+    .car-price {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cars-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 15px;
+    }
+    
+    .car-image {
+        height: 160px;
+    }
+    
+    .car-title {
+        font-size: 15px;
+    }
+    
+    .car-price {
+        font-size: 16px;
+    }
+    
+    .car-info {
+        font-size: 13px;
+    }
+}
+
 /* Home.css */
 
 /* Conteneur global pour la section filtres + cartes */
@@ -226,4 +380,61 @@ body{
 /* Hover effect sur label */
 .filters label:hover {
   color: #007bff;
+}
+
+/* FILTERS RESPONSIVE */
+@media (max-width: 1024px) {
+    .home-content {
+        flex-direction: column;
+    }
+    
+    .filters {
+        min-width: auto;
+        width: 94%;
+        margin: 2% 3%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filters {
+        padding: 15px;
+        margin: 15px;
+        width: calc(100% - 30px);
+    }
+    
+    .filters h3 {
+        font-size: 16px;
+    }
+    
+    .filters select {
+        padding: 6px;
+        font-size: 14px;
+    }
+    
+    .filters label {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filters {
+        padding: 10px;
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+    
+    .filters h3 {
+        font-size: 14px;
+    }
+    
+    .filters select {
+        padding: 5px;
+        font-size: 13px;
+    }
+    
+    .filters label {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
 }

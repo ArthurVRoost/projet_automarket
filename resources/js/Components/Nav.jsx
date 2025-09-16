@@ -8,9 +8,9 @@ export default function Nav ({auth, user}) {
     <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
       {auth.user ? (
         <div className='navDiv' >
-          <h3 style={{color: '#3468df', display: 'flex', alignItems: 'center', gap: '5px'}}>
+          <Link href={'/'} className='LinkNav'><h3 style={{color: '#3468df', display: 'flex', alignItems: 'center', gap: '5px'}}>
             <LuCar /> AutoMarket
-          </h3>
+          </h3></Link>
           <Link className='LinkNav' href={'/'} >Catalogue</Link>
           <Link className='LinkNav' href={route('cars.create')}><GoPlus /> Vendez votre voiture</Link>
           <Link className='LinkNav' href={route('brands.create')}><GoPlus /> Rajoutez une marque</Link>
