@@ -7,16 +7,14 @@ import React, { useState } from 'react';
 export default function Show({ car, auth, user }) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    // Paramètres du crédit
-    const loanTerm = 60; // 60 mois
-    const annualRate = 0.03; // 3%
+    // CALCUL TAEG
+    const loanTerm = 60; 
+    const annualRate = 0.03; 
     const monthlyRate = annualRate / 12;
     const initialDeposit = 9000;
 
-    // Capital emprunté
+   
     const loanAmount = car.prix - initialDeposit;
-
-    // Formule de mensualité
     const monthlyPayment = loanAmount > 0 
         ? (loanAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -loanTerm))
         : 0;
@@ -28,6 +26,7 @@ export default function Show({ car, auth, user }) {
         car.image4_path
     ];
 
+    // CAROUSEL
     const nextImage = () => {
         setCurrentImageIndex((prev) => (prev + 1) % images.length);
     };
@@ -36,14 +35,12 @@ export default function Show({ car, auth, user }) {
         setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
     };
 
+    // SERT A FORMATER LES NOMBRES EN FONCTION D'UNE LOCAL, ICI LANGUE FR POUR AFFICHER SELON LES NORMES FR
     const formatPrice = (price) => {
         return new Intl.NumberFormat('fr-FR').format(price);
     };
 
-    const getTransmissionText = () => {
-        return 'Automatique'; // Vous pouvez ajouter ce champ à votre base de données
-    };
-
+    // DANS SEEDER JE DONNE UNE COULEUR HEX DONC TRANSFORME CA EN STRING POUR L'AFFICHER EN STRING DANS L'HTML
     const getColorName = (hexColor) => {
         const colorMap = {
             '#000000': 'Noir métallisé',
@@ -63,66 +60,46 @@ export default function Show({ car, auth, user }) {
         <>
         <Nav auth={auth} user={user}/>
         <div className="show-container">
-            {/* Header avec bouton retour */}
+            {/* RETOUR */}
             <div className="header">
-                <Link href={'/'} style={{textDecoration:'none'}}><button className="back-button"  >← Retour au catalogue</button></Link>
+                <Link href={'/'} style={{textDecoration:'none'}}><button className="back-button"  > ← Retour au catalogue</button></Link>
             </div>
 
             <div className="content-wrapper">
-                {/* Section principale */}
                 <div className="main-content">
-                    {/* Carousel d'images */}
+                    {/* CAROU */}
                     <div className="image-carousel">
-                        <button className="carousel-btn prev" onClick={prevImage}>
-                            ←
-                        </button>
-                        <img 
-                            src={`/${images[currentImageIndex]}`} 
-                            alt={`${car.brand.nom} ${car.model}`}
-                            className="car-image2"
-                        />
-                        <button className="carousel-btn next" onClick={nextImage}>
-                            →
-                        </button>
+                        <button className="carousel-btn prev" onClick={prevImage}> ← </button>
+                        <img src={`/${images[currentImageIndex]}`}  alt={`${car.brand.nom} ${car.model}`} className="car-image2"/>
+                        <button className="carousel-btn next" onClick={nextImage}> → </button>
                     </div>
-
-                    {/* Informations principales du véhicule */}
+                    {/* SECTION 1 */}
                     <div className="car-main-info">
                         <div className="car-header">
                             <h1 className="car-title">{car.brand.nom} {car.model}</h1>
-                            <div className="car-actions">
-                                <button className="action-btn share">⚹</button>
-                                <button className="action-btn favorite">♡</button>
-                            </div>
                         </div>
-                        
                         <div className="price">{formatPrice(car.prix)} €</div>
-                        
                         <div className="car-specs">
                             <div className="spec-item">
-                                <span className="spec-icon">📅</span>
-                                <span>{car.annee}</span>
+                                <span className="spec-icon">Année:</span>
+                                <strong>{car.annee}</strong>
                             </div>
                             <div className="spec-item">
-                                <span className="spec-icon">🛣️</span>
-                                <span>{formatPrice(car.kilometrage)} km</span>
+                                <span className="spec-icon">Kilométrage:</span>
+                                <strong>{formatPrice(car.kilometrage)} km</strong>
                             </div>
                             <div className="spec-item">
-                                <span className="spec-icon">⛽</span>
-                                <span>{car.fuel.fuel}</span>
-                            </div>
-                            <div className="spec-item">
-                                <span className="spec-icon">⚙️</span>
-                                <span>{getTransmissionText()}</span>
+                                <span className="spec-icon">Type de fuel:</span>
+                                <strong>{car.fuel.fuel}</strong>
                             </div>
                         </div>
                     </div>
 
-                    {/* Description */}
+                    {/* SECTION 2 */}
                     <div className="description-section">
                         <h2>Description</h2>
                         <p>{car.description}</p>
-                        
+                        {/* BLABLA POUR REMPLIR, CODE BRUTE */}
                         <div className="equipment-list">
                             <p>Équipements principaux:</p>
                             <ul>
@@ -136,11 +113,10 @@ export default function Show({ car, auth, user }) {
                                 <li>- Système audio Burmester</li>
                             </ul>
                         </div>
-                        
                         <p><strong>Première main, non-fumeur. Disponible immédiatement.</strong></p>
                     </div>
 
-                    {/* Caractéristiques */}
+                    {/* SECTION 3 */}
                     <div className="characteristics-section">
                         <h2>Caractéristiques</h2>
                         <div className="characteristics-grid">
@@ -160,12 +136,12 @@ export default function Show({ car, auth, user }) {
                                 <span className="char-label">Places</span>
                                 <span className="char-value">5</span>
                                 <span className="char-label">Localisation</span>
-                                <span className="char-value">Paris 16ème</span>
+                                <span className="char-value">Schaerbeek 1030</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Équipements */}
+                    {/* SECTION 4 */}
                     <div className="equipments-section">
                         <h2>Équipements</h2>
                         <div className="equipment-tags">
@@ -185,27 +161,28 @@ export default function Show({ car, auth, user }) {
                     </div>
                 </div>
 
-                {/* Sidebar droite */}
+                {/* SECTION 5 */}
                 <div className="sidebar">
-                    {/* Section vendeur */}
                     <div className="seller-section">
                         <h3>Vendeur</h3>
-                        <div className="seller-name">{car.user.name}</div>
-                        <div className="seller-location">📍 Schaerbeek 1030</div>
+                        <div className="seller-name"style={{marginBottom:'0px'}}>
+                            <p>{car.user.name}</p>
+                        </div>
+                        <div className="seller-location" style={{marginBottom:'0px'}}>
+                            <p>Schaerbeek 1030</p> 
+                        </div>
                         <Link href={route('mail')}>
-                        <button className="contact-btn">
-                            Contacter le vendeur
-                        </button>
+                        <button className="contact-btn">Contacter le vendeur</button>
                         </Link>
                         <div className="contact-note">
-                            Connectez-vous pour contacter le vendeur
+                            <p>Connectez-vous pour contacter le vendeur</p>
                         </div>
                     </div>
 
-                    {/* Simulation de financement */}
+                    {/* SECTION 6 */}
+                    {/* SPAN POUR EVITER MARGIN PAR DEFAUT DU P */}
                     <div className="financing-section">
-                        <h3>Simulation de financement</h3>
-                        
+                        <h3>Financement</h3>
                         <div className="financing-details">
                             <div className="financing-row">
                                 <span>Prix du véhicule</span>
@@ -218,12 +195,10 @@ export default function Show({ car, auth, user }) {
                         </div>
 
                         <div className="monthly-payment">
-                            <div className="payment-label">Mensualité</div>
-                            <div className="payment-amount">{formatPrice(monthlyPayment.toFixed(2))} €</div>
-                        </div>
-
-                        <div className="financing-note">
-                            Simulation indicative sur 60 mois avec 9 000 € d'apport initial
+                            <div className="payment-label">
+                                <span>Mensualité</span>
+                            </div>
+                            <div className="payment-amount"> € {formatPrice(monthlyPayment.toFixed(2))} </div>
                         </div>
                     </div>
                 </div>
