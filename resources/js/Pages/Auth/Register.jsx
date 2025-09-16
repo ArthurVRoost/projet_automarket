@@ -1,9 +1,6 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { LuCar } from "react-icons/lu";
+
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -13,7 +10,6 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
-        // role_id: '' // facultatif si tu veux laisser l'admin choisir
     });
 
     const submit = (e) => {
@@ -25,157 +21,174 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <>
+            <Head title="Inscription" />
+            
+            <div className="register-container">
+                <div className="register-card">
+                    <div className="register-header">
+                        <h3 className="register-logo">
+                            <LuCar /> AutoMarket
+                        </h3>
+                        <p className="register-subtitle">Créez votre compte pour commencer</p>
+                    </div>
 
-            <form onSubmit={submit}>
-                {/* Nom */}
-                <div>
-                    <InputLabel htmlFor="name" value="Nom" />
+                    <form onSubmit={submit}>
+                        {/* Nom et Prénom sur la même ligne */}
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="name" className="form-label">
+                                    Nom *
+                                </label>
+                                <input
+                                    id="name"
+                                    name="name"
+                                    value={data.name}
+                                    className="form-input"
+                                    autoComplete="family-name"
+                                    autoFocus
+                                    onChange={(e) => setData('name', e.target.value)}
+                                    required
+                                />
+                                {errors.name && (
+                                    <div className="input-error">
+                                        {errors.name}
+                                    </div>
+                                )}
+                            </div>
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="family-name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
+                            <div className="form-group">
+                                <label htmlFor="first_name" className="form-label">
+                                    Prénom *
+                                </label>
+                                <input
+                                    id="first_name"
+                                    name="first_name"
+                                    value={data.first_name}
+                                    className="form-input"
+                                    autoComplete="given-name"
+                                    onChange={(e) => setData('first_name', e.target.value)}
+                                    required
+                                />
+                                {errors.first_name && (
+                                    <div className="input-error">
+                                        {errors.first_name}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
 
-                    <InputError message={errors.name} className="mt-2" />
+                        {/* Téléphone */}
+                        <div className="form-group">
+                            <label htmlFor="phone" className="form-label">
+                                Téléphone *
+                            </label>
+                            <input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                value={data.phone}
+                                className="form-input"
+                                autoComplete="tel"
+                                placeholder="0123456789"
+                                onChange={(e) => setData('phone', e.target.value)}
+                                required
+                            />
+                            {errors.phone && (
+                                <div className="input-error">
+                                    {errors.phone}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Email */}
+                        <div className="form-group">
+                            <label htmlFor="email" className="form-label">
+                                Email *
+                            </label>
+                            <input
+                                id="email"
+                                type="email"
+                                name="email"
+                                value={data.email}
+                                className="form-input"
+                                autoComplete="username"
+                                placeholder="exemple@email.com"
+                                onChange={(e) => setData('email', e.target.value)}
+                                required
+                            />
+                            {errors.email && (
+                                <div className="input-error">
+                                    {errors.email}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Mot de passe */}
+                        <div className="form-group">
+                            <label htmlFor="password" className="form-label">
+                                Mot de passe *
+                            </label>
+                            <input
+                                id="password"
+                                type="password"
+                                name="password"
+                                value={data.password}
+                                className="form-input"
+                                autoComplete="new-password"
+                                placeholder="Minimum 8 caractères"
+                                onChange={(e) => setData('password', e.target.value)}
+                                required
+                            />
+                            {errors.password && (
+                                <div className="input-error">
+                                    {errors.password}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Confirmer le mot de passe */}
+                        <div className="form-group">
+                            <label htmlFor="password_confirmation" className="form-label">
+                                Confirmer le mot de passe *
+                            </label>
+                            <input
+                                id="password_confirmation"
+                                type="password"
+                                name="password_confirmation"
+                                value={data.password_confirmation}
+                                className="form-input"
+                                autoComplete="new-password"
+                                placeholder="Répétez votre mot de passe"
+                                onChange={(e) => setData('password_confirmation', e.target.value)}
+                                required
+                            />
+                            {errors.password_confirmation && (
+                                <div className="input-error">
+                                    {errors.password_confirmation}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="form-footer">
+                            <Link
+                                href={route('login')}
+                                className="login-link"
+                            >
+                                Déjà inscrit ? Connectez-vous
+                            </Link>
+
+                            <button 
+                                type="submit" 
+                                className={`primary-button ${processing ? 'loading' : ''}`}
+                                disabled={processing}
+                            >
+                                {processing ? 'Inscription...' : 'S\'inscrire'}
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-                {/* Prénom */}
-                <div className="mt-4">
-                    <InputLabel htmlFor="first_name" value="Prénom" />
-
-                    <TextInput
-                        id="first_name"
-                        name="first_name"
-                        value={data.first_name}
-                        className="mt-1 block w-full"
-                        autoComplete="given-name"
-                        onChange={(e) => setData('first_name', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.first_name} className="mt-2" />
-                </div>
-
-                {/* Téléphone */}
-                <div className="mt-4">
-                    <InputLabel htmlFor="phone" value="Téléphone" />
-
-                    <TextInput
-                        id="phone"
-                        name="phone"
-                        value={data.phone}
-                        className="mt-1 block w-full"
-                        autoComplete="tel"
-                        onChange={(e) => setData('phone', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.phone} className="mt-2" />
-                </div>
-
-                {/* Email */}
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                {/* Password */}
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Mot de passe" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                {/* Confirm Password */}
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirmer le mot de passe"
-                    />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
-                        required
-                    />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
-
-                {/* Role (optionnel, si admin veut choisir) */}
-                {/* 
-                <div className="mt-4">
-                    <InputLabel htmlFor="role_id" value="Rôle" />
-                    <select
-                        id="role_id"
-                        name="role_id"
-                        value={data.role_id}
-                        className="mt-1 block w-full border-gray-300 rounded-md"
-                        onChange={(e) => setData('role_id', e.target.value)}
-                    >
-                        <option value="">-- Choisir un rôle --</option>
-                        <option value="1">User</option>
-                        <option value="2">Modo</option>
-                        <option value="3">Admin</option>
-                    </select>
-                    <InputError message={errors.role_id} className="mt-2" />
-                </div>
-                */}
-
-                <div className="mt-4 flex items-center justify-end">
-                    <Link
-                        href={route('login')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                        Déjà inscrit ?
-                    </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        S'inscrire
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+            </div>
+        </>
     );
 }

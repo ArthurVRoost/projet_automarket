@@ -164,7 +164,7 @@ export default function AdminIndex({ users, roles, auth, user }) {
                                                             disabled={processing}
                                                             className="btn-save"
                                                         >
-                                                            Sauver
+                                                            Enregistrer
                                                         </button>
                                                         <button
                                                             onClick={() => setEditingUser(null)}

@@ -65,6 +65,6 @@ class CarController extends Controller
         abort(403, 'Accès refusé');
     }
     $car->delete();
-    return redirect()->route('homepage')->with('success', 'Voiture supprimée !');
+    return Inertia::location(route('homepage'));
 }
 }
