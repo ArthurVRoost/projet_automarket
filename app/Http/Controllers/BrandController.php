@@ -8,8 +8,7 @@ use Inertia\Inertia;
 
 class BrandController extends Controller
 {
-    public function create()
-    {
+    public function create(){
         return Inertia::render('CreateBrand', [
         'auth' => [
             'user' => auth()->user()
@@ -17,8 +16,7 @@ class BrandController extends Controller
     ]);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
             'logo' => 'nullable|image|max:2048', 

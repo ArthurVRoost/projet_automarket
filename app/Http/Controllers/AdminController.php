@@ -13,8 +13,7 @@ class AdminController extends Controller
     /**
      * Afficher la page d'administration
      */
-    public function index(): Response
-    {
+    public function index(): Response{
         $users = User::with('role')->orderBy('created_at', 'desc')->get();
         $roles = Role::all();
 
@@ -30,13 +29,12 @@ class AdminController extends Controller
     /**
      * Mettre à jour le rôle d'un utilisateur
      */
-    public function updateUserRole(Request $request, User $user)
-    {
+    public function updateUserRole(Request $request, User $user){
         $request->validate([
             'role_id' => 'required|exists:roles,id'
         ]);
 
-        // Empêcher un admin de se retirer ses propres droits admin
+        // EMPECHE UN ADMIN DE SE RETIRER SES DROITS
         if ($user->id === auth()->id() && $request->role_id != 3) {
             return Inertia::location('/admin');;
         }
@@ -53,9 +51,8 @@ class AdminController extends Controller
     /**
      * Supprimer un utilisateur
      */
-    public function deleteUser(User $user)
-    {
-        // Empêcher un admin de se supprimer lui-même
+    public function deleteUser(User $user){
+        // EMPECHE UN ADMIN DE S'AUTODELETE
         if ($user->id === auth()->id()) {
             return Inertia::location('/admin');;
         }

@@ -11,18 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
-    // Formulaire create
-    public function create()
-    {
+    
+    public function create(){
         return Inertia::render('CreateCar', [
             'brands' => Brand::all(),
             'fuels' => Fuel::all()
         ]);
     }
 
-    // Store la voiture
-    public function store(Request $request)
-{
+    
+    public function store(Request $request){
     $data = $request->validate([
         'brand_id' => 'required|exists:brands,id',
         'fuel_id' => 'required|exists:fuels,id',
@@ -59,8 +57,7 @@ class CarController extends Controller
 }
 
     
-    public function destroy(Car $car)
-{
+    public function destroy(Car $car){
     if (!in_array(Auth::user()->role_id, [2, 3])) {
         abort(403, 'Accès refusé');
     }
