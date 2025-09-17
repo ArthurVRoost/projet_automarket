@@ -129,7 +129,19 @@ body{
     padding: 10px;
     color: white;
 }
-
+.SMIcons{
+    border-radius: 50%;
+    border: 1px solid white;
+    padding: 5px;
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+}
+.SMIcons:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px 0px white;
+}
 /* FOOTER RESPONSIVE */
 @media (max-width: 768px) {
     .div1Footer {
