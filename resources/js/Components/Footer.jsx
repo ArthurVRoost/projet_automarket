@@ -9,7 +9,7 @@ export default function Footer () {
         <div className='div1Footer'>
           <Link style={{textDecoration:"none", color:'white'}} className='div1FooterP'><LuCar/> Automarket</Link>
           <Link href={'/'} style={{textDecoration:"none", color:'white'}} className='div1FooterLink'>Catalogue</Link>
-          <Link href={'/'}style={{textDecoration:"none", color:'white'}} className='div1FooterLink'>Vendez votre voiture</Link>
+          <Link href={route('cars.create')} style={{textDecoration:"none", color:'white'}} className='div1FooterLink'>Vendez votre voiture</Link>
         </div>
       </div>
       <div className='div2Footer'>

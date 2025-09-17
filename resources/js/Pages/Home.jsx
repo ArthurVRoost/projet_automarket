@@ -42,7 +42,6 @@ export default function Home({ auth, user, cars, brands, fuels }) {
               <option key={brand.id} value={brand.name}>{brand.name}</option>
             ))}
           </select>
-
           <h3>Filtrer par carburant</h3>
           <div>
             <label>
@@ -59,7 +58,6 @@ export default function Home({ auth, user, cars, brands, fuels }) {
             </div>
           ))}
         </div>
-
         {/* CARDS */}
        <div className="cars-container" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
         {filteredCars.map((car) => (
@@ -82,7 +80,6 @@ export default function Home({ auth, user, cars, brands, fuels }) {
               <Link href={route('cars.show', car.id)}>
                 <button className="car-btn">Voir détails</button>
               </Link>
-
               {(auth.user?.role_id === 2 || auth.user?.role_id === 3) && (
                 <button  onClick={() => handleDelete(car.id)}  style={{ marginTop: '10px', backgroundColor: 'red', color: 'white', padding: '10px 15px', border:'none', borderRadius:'15px' }}>
                   Supprimer l'annonce 
